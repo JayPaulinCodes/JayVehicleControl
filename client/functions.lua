@@ -96,7 +96,7 @@ function isVehicleLocked(vehicle)
 
     local lockState = GetVehicleDoorLockStatus(vehicle)
 
-    if lockstate = 0 the return nil end
+    if lockstate == 0 then return nil end
 
     if lockState == 0 or lockState == 1 then
         return false
@@ -570,9 +570,9 @@ function setWindowData(vehicle, windowIndex)
 
     VehicleData_Client[vehicle]["windows"][key] = not VehicleData_Client[vehicle]["windows"][key]
 
-    TriggerServerEvent("Jay:VehcileControl:setVehicleData", vehicle, VehicleData_Client[vehicle])
+    TriggerServerEvent("Jay:VehicleControl:setVehicleData", vehicle, VehicleData_Client[vehicle])
 
-    TriggerServerEvent("Jay:VehcileControl:syncVehicleData")
+    TriggerServerEvent("Jay:VehicleControl:syncVehicleData")
 end
 
 

@@ -11,7 +11,7 @@ end)
 
 -- Sync vehicle data every minute
 Citizen.CreateThread(function() 
-    while (true) do
+    while true do
         TriggerServerEvent("Jay:VehicleControl:syncVehicleData")
         Citizen.Wait(60000)
     end
@@ -72,7 +72,7 @@ end)
 
 
 
-local function engineCommand() 
+function engineCommand() 
     local playerPed = GetPlayerPed(-1)
 
     -- Make sure the player exists
@@ -112,7 +112,7 @@ local function engineCommand()
 
 end
 
-local function doorCommand(doorIndex)
+function doorCommand(doorIndex)
     local playerPed = GetPlayerPed(-1)
 
     -- Make sure the player exists
@@ -209,7 +209,7 @@ local function doorCommand(doorIndex)
 end
 
 
-local function windowCommand(windowIndex)
+function windowCommand(windowIndex)
     local playerPed = GetPlayerPed(-1)
 
     TriggerServerEvent("Jay:VehicleControl:syncVehicleData")
@@ -272,7 +272,7 @@ local function windowCommand(windowIndex)
 
 end
 
-local function trunkCommand()
+function trunkCommand()
     local playerPed = GetPlayerPed(-1)
 
     -- Make sure the player exists
@@ -297,13 +297,13 @@ local function trunkCommand()
                             SetVehicleDoorShut(vehicle, 5, false)
 
                             -- Notify the player accordingly
-                            drawNotification(_("fiveMColour_red") .. _("closed") .. translateDoorIndex(5))
+                            drawNotification(_("fiveMColour_red") .. _("closed", translateDoorIndex(5)))
                         else
                             -- Open the door
                             SetVehicleDoorOpen(vehicle, 5, false, false)
 
                             -- Notify the player accordingly
-                            drawNotification(_("fiveMColour_green") .. _("opened") .. translateDoorIndex(5))
+                            drawNotification(_("fiveMColour_green") .. _("opened", translateDoorIndex(5)))
                         end
     
                     end
@@ -312,7 +312,7 @@ local function trunkCommand()
 
             else 
                 -- Notify the player that the door doesn't exist
-                drawNotification(_("fiveMColour_yellow") .. _("doorDoesNotExist") .. translateDoorIndex(5))
+                drawNotification(_("fiveMColour_yellow") .. _("doorDoesNotExist", translateDoorIndex(5)))
             end
 
         else
@@ -335,18 +335,18 @@ local function trunkCommand()
                             SetVehicleDoorShut(vehicle, 5, false)
 
                             -- Notify the player accordingly
-                            drawNotification(_("fiveMColour_red") .. _("closed") .. translateDoorIndex(5))
+                            drawNotification(_("fiveMColour_red") .. _("closed", translateDoorIndex(5)))
                         else
                             -- Open the door
                             SetVehicleDoorOpen(vehicle, 5, false, false)
 
                             -- Notify the player accordingly
-                            drawNotification(_("fiveMColour_green") .. _("opened") .. translateDoorIndex(5))
+                            drawNotification(_("fiveMColour_green") .. _("opened", translateDoorIndex(5)))
                         end
 
                     else 
                         -- Notify the player that the door doesn't exist
-                        drawNotification(_("fiveMColour_yellow") .. _("doorDoesNotExist") .. translateDoorIndex(5))
+                        drawNotification(_("fiveMColour_yellow") .. _("doorDoesNotExist", translateDoorIndex(5)))
                     end
 
                 end
@@ -368,7 +368,7 @@ local function trunkCommand()
 
 end
 
-local function hoodCommand()
+function hoodCommand()
     local playerPed = GetPlayerPed(-1)
 
     -- Make sure the player exists
@@ -393,13 +393,13 @@ local function hoodCommand()
                             SetVehicleDoorShut(vehicle, 4, false)
 
                             -- Notify the player accordingly
-                            drawNotification(_("fiveMColour_red") .. _("closed") .. translateDoorIndex(4))
+                            drawNotification(_("fiveMColour_red") .. _("closed", translateDoorIndex(4)))
                         else
                             -- Open the door
                             SetVehicleDoorOpen(vehicle, 4, false, false)
 
                             -- Notify the player accordingly
-                            drawNotification(_("fiveMColour_green") .. _("opened") .. translateDoorIndex(4))
+                            drawNotification(_("fiveMColour_green") .. _("opened", translateDoorIndex(4)))
                         end
     
                     end
@@ -408,7 +408,7 @@ local function hoodCommand()
 
             else 
                 -- Notify the player that the door doesn't exist
-                drawNotification(_("fiveMColour_yellow") .. _("doorDoesNotExist") .. translateDoorIndex(4))
+                drawNotification(_("fiveMColour_yellow") .. _("doorDoesNotExist", translateDoorIndex(5)))
             end
 
         else
@@ -431,18 +431,18 @@ local function hoodCommand()
                             SetVehicleDoorShut(vehicle, 4, false)
 
                             -- Notify the player accordingly
-                            drawNotification(_("fiveMColour_red") .. _("closed") .. translateDoorIndex(4))
+                            drawNotification(_("fiveMColour_red") .. _("closed", translateDoorIndex(4)))
                         else
                             -- Open the door
                             SetVehicleDoorOpen(vehicle, 4, false, false)
 
                             -- Notify the player accordingly
-                            drawNotification(_("fiveMColour_green") .. _("opened") .. translateDoorIndex(4))
+                            drawNotification(_("fiveMColour_green") .. _("opened", translateDoorIndex(4)))
                         end
 
                     else 
                         -- Notify the player that the door doesn't exist
-                        drawNotification(_("fiveMColour_yellow") .. _("doorDoesNotExist") .. translateDoorIndex(4))
+                        drawNotification(_("fiveMColour_yellow") .. _("doorDoesNotExist", translateDoorIndex(5)))
                     end
 
                 end

@@ -17,6 +17,38 @@ Citizen.CreateThread(function()
     end
 end)
 
+-- Handle the exit vehicle with door open function
+Citizen.CreateThread(function() 
+    while true do
+        
+        -- Create our timer varriable
+        local VehicleExitTimer = 0
+
+        -- Run while they hold the exit key
+        while IsControlPressed(0, CONTROLS["INPUT_VEH_EXIT"].ControlIndex) do
+
+            -- Add a tick/fram to the timer
+            VehicleExitTimer = VehicleExitTimer + 1
+
+            -- Wait until they hold it for the desired amount of time
+            if VehicleExitTimer > (CONFIG["KeyPressDuration"] * 60) then
+
+                -- Execute the step out of car with door open function
+                exitVehicleWithDoorOpen()
+                
+            end
+            
+            Citizen.Wait(0)
+        end
+
+        -- Stops the timer from running again while they are holding the key
+        while not IsControlJustReleased(0, CONTROLS["INPUT_VEH_EXIT"].ControlIndex) do
+            Citizen.Wait(0)
+        end
+        
+        Citizen.Wait(0)
+    end
+end)
 
 RegisterCommand(_("engineCmd_name"), function(source, args, rawCommands) 
     engineCommand()
@@ -462,4 +494,22 @@ function hoodCommand()
 
     end
 
+end
+
+function exitVehicleWithDoorOpen()
+    local playerPed = GetPlayerPed(-1)
+
+    -- Make sure the player exists
+    if isPedRealAndAlive(playerPed) then
+
+        -- Make sure their in a vehcile
+        if IsPedSittingInAnyVehicle(playerPed) then 
+            local vehicle = GetVehiclePedIsIn( playerPed, false )
+
+            -- Make the player exit the vehicle with the door open
+            TaskLeaveVehicle(playerPed, vehicle, 256)
+
+        end
+
+    end
 end

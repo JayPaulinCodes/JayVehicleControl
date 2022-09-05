@@ -12,6 +12,7 @@ shared_scripts{
     "common/config.lua",
     "common/commands.lua",
     "common/chatTemplates.lua",
+    "common/controls.lua",
 }
 
 client_scripts {

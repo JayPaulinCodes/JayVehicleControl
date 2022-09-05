@@ -10,3 +10,10 @@ CONFIG = {}
     and use that if they wish!
 ]]
 CONFIG["Locale"] = "en"
+
+--[[
+    This controls how long in seconds the exit vehicle 
+    key must be pushed for in order to exit the vehicle 
+    with the door open
+]]
+CONFIG["KeyPressDuration"] = 3
